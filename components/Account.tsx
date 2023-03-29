@@ -76,7 +76,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
   }
  */
   return (
-    <Box className='header'>
+    <Box className='account'>
       <Box className='networkName'>
         <Box className='styledPollingDot' />
         <p>{connectedNetwork(chainId)}</p>

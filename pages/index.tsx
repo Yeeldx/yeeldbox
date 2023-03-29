@@ -22,7 +22,7 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
+      <header className='header'>
         <nav>
           <Link href="/">
             <img
@@ -37,33 +37,7 @@ function Home() {
         </nav>
       </header>
 
-      <main>
-        <h1>
-          Welcome to{" "}
-          <a href="https://github.com/mirshko/next-web3-boilerplate">
-            next-web3-boilerplate
-          </a>
-        </h1>
-
-        {isConnected && (
-          <section>
-            <ETHBalance />
-
-            <TokenBalance tokenAddress={DAI_TOKEN_ADDRESS} symbol="DAI" />
-          </section>
-        )}
-      </main>
-
-      <style jsx>{`
-        nav {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        main {
-          text-align: center;
-        }
-      `}</style>
+  
     </div>
   );
 }

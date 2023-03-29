@@ -17,7 +17,12 @@ a {
   box-sizing: border-box;
 }
 
-.header {
+.header nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.account {
   padding: 0 24px;
   position: relative;
   display: flex;
