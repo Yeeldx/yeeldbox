@@ -24,7 +24,14 @@ function Home() {
 
       <header>
         <nav>
-          <Link href="/">next-web3-boilerplate</Link>
+          <Link href="/">
+            <img
+              src="https://avatars.githubusercontent.com/u/111516461?s=200&v=4"
+              alt='YeeldxLogo'
+              height={60}
+            />
+            <span style={{ fontWeight: 500, color: "#ffffff" }}>Yeeldx</span>
+          </Link>
 
           <Account triedToEagerConnect={triedToEagerConnect} />
         </nav>
