@@ -1,0 +1,170 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: steelblue;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 0 24px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 88px;
+  z-index: 3;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .a {
+  display: flex;
+}
+
+.header .div{
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.header .div :last-child .button {
+  height: 40px;
+  border-radius: 20px;
+}
+
+.header .div :last-child .button :first-child {
+  padding: 0 16px;
+  margin-right: 16px;
+}
+
+.header .div :last-child .button :first-child .svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.header .div :last-child .button :last-child {
+  padding: 0 32px;
+}
+
+.header .div :last-child .button .p {
+  font-size: 16px;
+}
+
+.networkName {
+  padding: 0 16px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.networkName p{
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.networkName img{
+  width: 10px;
+  margin-left: 2px
+}
+
+.connectButton {
+  width: 152px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  
+}
+
+.connectButton :hover .wrongNetworkContent {
+  display: block;
+}
+
+.wrongNetworkWrapper {
+  position: absolute;
+  top: 36px;
+  width: 272px;
+  right: 0;
+  padding-top: 18px
+}
+
+.wrongNetworkContent {
+  background: #12131a;
+  border-radius: 10px;
+  padding: 24px;
+  display: none;
+}
+
+.wrongNetworkContent small {
+  color: #b6b9cc;
+  font-size: 14px;
+  line-height: 1.57;
+}
+
+.wrongNetworkContent div {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: solid 1px #448aff;
+  color: #448aff;
+  font-size: 14px;
+  font-weight: 600
+}
+
+
+.accountDetails {
+  border: solid 1px white;
+  padding: 0 16px;
+  height: 36px;
+  cursor: pointer;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accountDetails p {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.accountDetails img {
+  width: 20px;
+  margin-left: 8px
+}
+
+
+.styledPollingDot {
+  width: 15px;
+  height: 15px;
+  min-height: 8px;
+  min-width: 8px;
+  margin-left: 0rem;
+  margin-top: 0px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #0fc679;
+}
