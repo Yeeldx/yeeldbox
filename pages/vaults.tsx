@@ -3,27 +3,6 @@ import { Box, Button, Card, Grid, Link, Paper, Table, TableBody, TableCell, Tabl
 import { useEffect, useState } from "react";
 import StatsCard from "../components/StatsCard";
 
-const _vaults = [
-    {
-        icon: "https://raw.githubusercontent.com/yearn/yearn-assets/master/icons/multichain-tokens/42161/0x239e14A19DFF93a17339DCC444f74406C17f8E67/logo-128.png",
-        display_name: "Curve Tricrypto Vault",
-        address: "0xdeD8B4ac5a4a1D70D633a87A22d9a7A8851bEa1b",
-        apy: { net_apy: "58%" },
-        details: { availableDepositLimit: 0 },
-        tvl: { tvl_deposited: 0, price: 0 },
-        status: 1
-    },
-    {
-        icon: "",
-        display_name: "MAGIC-ETH LP vault",
-        address: "",
-        apy: { net_apy: "0.00%" },
-        details: { availableDepositLimit: 0 },
-        tvl: { tvl_deposited: 0, price: 0 },
-        status: 0
-    },
-]
-
 const Vaults = () => {
     const [vaults, setVaults] = useState([]);
     const [isLoading, setLoading] = useState(false)
@@ -69,8 +48,8 @@ const Vaults = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {vaults.map((vault) => (
-                                <TableRow>
+                            {vaults.map((vault, index) => (
+                                <TableRow key={vault.address}>
                                     <TableCell align="left">
                                         <span
                                             style={{

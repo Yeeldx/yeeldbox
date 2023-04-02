@@ -11,7 +11,12 @@ import WalletIcon from '../assets/images/WalletIcon.png';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import React from "react";
 
-const Account = () => {
+type AccountProps = {
+  triedToEagerConnect: boolean;
+};
+
+
+const Account = ({ triedToEagerConnect }: AccountProps) => {
   const { active, error, activate, chainId, account, setError } =
     useWeb3React();
 
@@ -41,31 +46,14 @@ const Account = () => {
 
   }
 
-  const switchToArbitrum = () => {
-    console.log("addArbToMetamask")
-    addArbToMetamask();
-  }
-  const getConnectBtnClassName = () => {
-    return (`connectButton ${isWeb3Available && !isSupportedNetwork(chainId)
-      ? 'bg-error'
-      : 'bg-primary'
-      }`)
-  }
-
-
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-
   if (error) {
     return null;
   }
+
+  if (!triedToEagerConnect) {
+    return null;
+  }
+
   return (
     <>
       <Box

@@ -29,6 +29,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionTyp
                                 id="outlined-adornment-weight"
                                 aria-describedby="outlined-weight-helper-text"
                                 inputProps={{ 'aria-label': 'weight' }}
+                                disabled={true}
                                 value={fromAddress}
                             />
                         </TableCell>
@@ -48,6 +49,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionTyp
                                 id="outlined-adornment-weight"
                                 aria-describedby="outlined-weight-helper-text"
                                 inputProps={{ 'aria-label': 'weight' }}
+                                disabled={true}
                                 value={toAddress}
                             />
                         </TableCell>

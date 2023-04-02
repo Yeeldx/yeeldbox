@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import StatsCard from '../../components/StatsCard';
 import VaultTxWidget from '../../components/VaultTxWidget';
 import { useWeb3React } from '@web3-react/core';
+import { shortenAddress } from '../../utils';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -27,7 +28,7 @@ const Vault = () => {
             .then((res) => res.json())
             .then((response) => {
                 console.log("vault: ", response.data)
-                if(response.data !== undefined){
+                if (response.data !== undefined) {
                     setVault(response.data)
                 }
                 setLoading(false)
@@ -91,10 +92,10 @@ const Vault = () => {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    <VaultTxWidget fromAddress="0xAasdasdae" toAddress="0xC4asdaseadasd" transactionType="deposit"></VaultTxWidget>
+                    <VaultTxWidget fromAddress={shortenAddress(account)} toAddress={shortenAddress(vault?.address)} transactionType="deposit"></VaultTxWidget>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <VaultTxWidget fromAddress="0xAasdasdae" toAddress="0xC4asdaseadasd" transactionType="withdraw"></VaultTxWidget>
+                    <VaultTxWidget fromAddress={shortenAddress(vault?.address)} toAddress={shortenAddress(account)} transactionType="withdraw"></VaultTxWidget>
                 </TabPanel>
             </Card>
 
