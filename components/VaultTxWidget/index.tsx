@@ -1,14 +1,38 @@
 import { Button, OutlinedInput, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import EastIcon from '@mui/icons-material/East';
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
+import useTokenContract from "../../hooks/useTokenContract";
 
-const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionType: any; onButtonClick: any }) => {
-    const { fromAddress, toAddress, transactionType, onButtonClick } = props;
+
+const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, transactionType: any; onButtonClick: any }) => {
+    const { fromAddress, toAddress, vault, transactionType, onButtonClick } = props;
+    const { account, library } = useWeb3React();
     const [amount, setAmount] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [isApprovalNeeded, setIsApprovalNeeded] = useState(false);
+    const tokenContract = useTokenContract(vault.token.address);
 
-    const handleAmountChange = (event) => {
+    const handleAmountChange = async (event) => {
+        setLoading(true);
+
         console.log("handleAmountChange: ", event.target.value)
         setAmount(event.target.value)
+
+        if (transactionType === "deposit") {
+            
+            const allowance = await tokenContract.allowance(account, vault.address);
+            const inputtedAmount = ethers.utils.parseUnits(event.target.value);
+
+            if (allowance >= inputtedAmount) {
+                setIsApprovalNeeded(false);
+            } else {
+                setIsApprovalNeeded(true);
+            }
+            setLoading(false);
+        }
+
     }
 
     return (
@@ -59,8 +83,9 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionTyp
                             <Button
                                 variant="contained"
                                 onClick={onButtonClick}
+                                color={isApprovalNeeded ? "warning": "info"}
                                 style={{ minWidth: 115 }}>
-                                {transactionType}
+                                {isApprovalNeeded ? "APPROVE" : transactionType}
                             </Button>
                         </TableCell>
                     </TableRow>

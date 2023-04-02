@@ -101,16 +101,18 @@ const Vault = () => {
                 </Box>
                 <TabPanel value={value} index={0}>
                     <VaultTxWidget
-                        fromAddress={shortenAddress(account)}
+                        fromAddress={account?shortenAddress(account):''}
                         toAddress={shortenAddress(vault?.address)}
                         transactionType="deposit"
+                        vault={vault}
                         onButtonClick={handleDeposit}></VaultTxWidget>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <VaultTxWidget
                         fromAddress={shortenAddress(vault?.address)}
-                        toAddress={shortenAddress(account)}
+                        toAddress={account?shortenAddress(account):''}
                         transactionType="withdraw"
+                        vault={vault}
                         onButtonClick={handleWithdraw}></VaultTxWidget>
                 </TabPanel>
             </Card>
