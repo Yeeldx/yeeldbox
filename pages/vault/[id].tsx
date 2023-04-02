@@ -11,20 +11,6 @@ interface TabPanelProps {
     value: number;
 }
 
-const _vault = {
-    icon: "https://raw.githubusercontent.com/yearn/yearn-assets/master/icons/multichain-tokens/42161/0x239e14A19DFF93a17339DCC444f74406C17f8E67/logo-128.png",
-    display_name: "Curve Tricrypto Vault",
-    address: "0xdeD8B4ac5a4a1D70D633a87A22d9a7A8851bEa1b",
-    token: {
-        description: "This token represents a Curve liquidity pool. Holders earn fees from users trading in the pool, and can also deposit the LP to Curve's gauges to earn CRV emissions. This crypto pool contains USDT, WBTC, and WETH. Please be aware that as crypto pools are composed of differently-priced assets, they are subject to impermanent loss."
-    },
-    strategies: [{
-        name: "CurveTriCryptoStrategy",
-        address: "0xc4d80C55dc12FF0f2b8680eC31A6ADC4cbC8Dfca",
-        description: "Supplies `crv3crypto` to Curve Finance (https://arbitrum.curve.fi) and stakes it in gauge to collect any available tokens and earn CRV rewards. Earned tokens are harvested, sold for more `crv3crypto` which is deposited back into the strategy."
-    }]
-}
-
 const Vault = () => {
 
     const router = useRouter()
@@ -39,7 +25,9 @@ const Vault = () => {
             .then((res) => res.json())
             .then((response) => {
                 console.log("vault: ", response.data)
-                setVault(response.data)
+                if(response.data !== undefined){
+                    setVault(response.data)
+                }
                 setLoading(false)
             })
 
