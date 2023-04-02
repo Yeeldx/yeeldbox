@@ -6,6 +6,8 @@ import StatsCard from '../../components/StatsCard';
 import VaultTxWidget from '../../components/VaultTxWidget';
 import { useWeb3React } from '@web3-react/core';
 import { shortenAddress } from '../../utils';
+import useVaultContract from '../../hooks/useVaultContract';
+import { ethers } from 'ethers';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -21,7 +23,9 @@ const Vault = () => {
     const [value, setValue] = useState(0);
     const [isLoading, setLoading] = useState(false)
     const [vault, setVault] = useState(undefined);
-
+    const [deposited, setDeposited] = useState("0.00");
+    const [balance, setBalance] = useState("0.00");
+    const vaultContract = useVaultContract(vid);
     useEffect(() => {
         setLoading(true)
         fetch('/api/vault/' + vid)
@@ -64,6 +68,20 @@ const Vault = () => {
         };
     }
 
+    const getTokenSummary = async () => {
+        
+        const totalDeposited = await vaultContract?.totalAssets();
+        console.log("totalAssets: ", totalDeposited)
+        setDeposited(totalDeposited? parseFloat(ethers.utils.formatUnits(totalDeposited)).toFixed(5): "0.00")
+
+        const totalBalance = await vaultContract?.balanceOf(account);
+        setBalance(totalBalance?parseFloat(ethers.utils.formatUnits(totalBalance)).toFixed(5): "0.00");
+    };
+
+    useEffect(() => {
+        getTokenSummary();
+    }, [vault])
+
     if (isLoading) return <p>Loading...</p>
     if (vault === undefined) return <p>No Vault found</p>
 
@@ -71,13 +89,13 @@ const Vault = () => {
         <>
             <Grid container spacing={2} padding={5}>
                 <Grid item xs={6} md={3} xl={3}>
-                    <StatsCard title="TOTAL DEPOSITED" amount="0.13614" />
+                    <StatsCard title="TOTAL DEPOSITED" amount={deposited} />
                 </Grid>
                 <Grid item xs={6} md={3} xl={3}>
                     <StatsCard title="NET APY" amount="58%" />
                 </Grid>
                 <Grid item xs={6} md={3} xl={3}>
-                    <StatsCard title="BALANCE" amount="0.00000" />
+                    <StatsCard title="BALANCE" amount={balance} />
                 </Grid>
                 <Grid item xs={6} md={3} xl={3}>
                     <StatsCard title="EARNED" amount="0.00000" />
@@ -93,7 +111,7 @@ const Vault = () => {
                 </Box>
                 <TabPanel value={value} index={0}>
                     <VaultTxWidget
-                        fromAddress={account?shortenAddress(account):''}
+                        fromAddress={account ? shortenAddress(account) : ''}
                         toAddress={shortenAddress(vault?.address)}
                         transactionType="deposit"
                         vault={vault}></VaultTxWidget>
@@ -101,7 +119,7 @@ const Vault = () => {
                 <TabPanel value={value} index={1}>
                     <VaultTxWidget
                         fromAddress={shortenAddress(vault?.address)}
-                        toAddress={account?shortenAddress(account):''}
+                        toAddress={account ? shortenAddress(account) : ''}
                         transactionType="withdraw"
                         vault={vault}></VaultTxWidget>
                 </TabPanel>

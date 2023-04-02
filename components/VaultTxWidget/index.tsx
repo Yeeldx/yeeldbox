@@ -1,5 +1,5 @@
 import { Button, OutlinedInput, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EastIcon from '@mui/icons-material/East';
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
@@ -90,7 +90,6 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, tr
         setLoading(false);
 
     }
-
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }}>
