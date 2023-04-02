@@ -22,6 +22,14 @@ const Vault = () => {
     const [isLoading, setLoading] = useState(false)
     const [vault, setVault] = useState(undefined);
 
+    const handleDeposit = (event, amount) => {
+        console.log("handleDeposit: ", amount)
+    }
+
+    const handleWithdraw = (event, amount) => {
+        console.log("handleWithdraw: ", amount)
+    }
+
     useEffect(() => {
         setLoading(true)
         fetch('/api/vault/' + vid)
@@ -92,10 +100,18 @@ const Vault = () => {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    <VaultTxWidget fromAddress={shortenAddress(account)} toAddress={shortenAddress(vault?.address)} transactionType="deposit"></VaultTxWidget>
+                    <VaultTxWidget
+                        fromAddress={shortenAddress(account)}
+                        toAddress={shortenAddress(vault?.address)}
+                        transactionType="deposit"
+                        onButtonClick={handleDeposit}></VaultTxWidget>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <VaultTxWidget fromAddress={shortenAddress(vault?.address)} toAddress={shortenAddress(account)} transactionType="withdraw"></VaultTxWidget>
+                    <VaultTxWidget
+                        fromAddress={shortenAddress(vault?.address)}
+                        toAddress={shortenAddress(account)}
+                        transactionType="withdraw"
+                        onButtonClick={handleWithdraw}></VaultTxWidget>
                 </TabPanel>
             </Card>
 

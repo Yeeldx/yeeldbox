@@ -2,12 +2,13 @@ import { Button, OutlinedInput, Paper, Table, TableBody, TableCell, TableContain
 import { useState } from "react";
 import EastIcon from '@mui/icons-material/East';
 
-const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionType: any; }) => {
-    const { fromAddress, toAddress, transactionType } = props;
+const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionType: any; onButtonClick: any }) => {
+    const { fromAddress, toAddress, transactionType, onButtonClick } = props;
     const [amount, setAmount] = useState(0);
 
-    const handleButtonClick = (event: any) => {
-        console.log("handleButtonClick: ", event);
+    const handleAmountChange = (event) => {
+        console.log("handleAmountChange: ", event.target.value)
+        setAmount(event.target.value)
     }
 
     return (
@@ -38,6 +39,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionTyp
                                 id="outlined-adornment-weight"
                                 aria-describedby="outlined-weight-helper-text"
                                 inputProps={{ 'aria-label': 'weight' }}
+                                onChange={handleAmountChange}
                                 value={amount}
                             />
                         </TableCell>
@@ -56,7 +58,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; transactionTyp
                         <TableCell align="center">
                             <Button
                                 variant="contained"
-                                onClick={handleButtonClick}
+                                onClick={onButtonClick}
                                 style={{ minWidth: 115 }}>
                                 {transactionType}
                             </Button>
