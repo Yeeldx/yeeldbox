@@ -5,6 +5,7 @@ import Account from "../components/Account";
 import ETHBalance from "../components/ETHBalance";
 import TokenBalance from "../components/TokenBalance";
 import useEagerConnect from "../hooks/useEagerConnect";
+import Vaults from "./vaults";
 
 const DAI_TOKEN_ADDRESS = "0x6b175474e89094c44da98b954eedeac495271d0f";
 
@@ -36,7 +37,7 @@ function Home() {
           <Account triedToEagerConnect={triedToEagerConnect} />
         </nav>
       </header>
-
+      <Vaults></Vaults>
   
     </div>
   );
