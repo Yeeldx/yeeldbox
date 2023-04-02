@@ -71,7 +71,21 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, tr
                     });
             }
         } else {
+            /** Withdraw */
+            vaultContract
+                .withdraw(ethers.utils.parseUnits(amount.toString()), {
+                    gasLimit: 1000000,
+                })
+                .then(async (tx: any) => {
+                    setLoading(false);
 
+                    await tx.wait(1);
+                    router.reload();
+                })
+                .catch((error: any) => {
+                    console.log(error);
+
+                });
         }
         setLoading(false);
 
