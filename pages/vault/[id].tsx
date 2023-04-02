@@ -4,6 +4,7 @@ import { Box, Card, CardContent, CardHeader, Grid, Tab, Table, Tabs, TextField, 
 import { useEffect, useState } from 'react';
 import StatsCard from '../../components/StatsCard';
 import VaultTxWidget from '../../components/VaultTxWidget';
+import { useWeb3React } from '@web3-react/core';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -15,6 +16,7 @@ const Vault = () => {
 
     const router = useRouter()
     const vid = router.query.id as string
+    const { account, library } = useWeb3React();
     const [value, setValue] = useState(0);
     const [isLoading, setLoading] = useState(false)
     const [vault, setVault] = useState(undefined);
@@ -54,7 +56,7 @@ const Vault = () => {
         );
     }
 
-    const a11yProps = (index: number) => {
+    const tabProps = (index: number) => {
         return {
             id: `simple-tab-${index}`,
             'aria-controls': `simple-tabpanel-${index}`,
@@ -83,9 +85,9 @@ const Vault = () => {
 
             <Card style={{ padding: 5, margin: 40 }}>
                 <Box>
-                    <Tabs value={value} onChange={toggleTxType} style={{ backgroundColor: "transparent" }} aria-label="basic tabs example">
-                        <Tab label="Deposit" {...a11yProps(0)} />
-                        <Tab label="Withdraw" {...a11yProps(1)} />
+                    <Tabs value={value} onChange={toggleTxType} style={{ backgroundColor: "transparent" }}>
+                        <Tab label="Deposit" {...tabProps(0)} />
+                        <Tab label="Withdraw" {...tabProps(1)} />
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>

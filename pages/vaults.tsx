@@ -28,7 +28,6 @@ const Vaults = () => {
     const [vaults, setVaults] = useState([]);
     const [isLoading, setLoading] = useState(false)
 
-
     useEffect(() => {
         setLoading(true)
         fetch('/api/vaults')

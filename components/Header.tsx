@@ -1,14 +1,8 @@
-import { useWeb3React } from "@web3-react/core";
 import Link from "next/link";
-import useEagerConnect from "../hooks/useEagerConnect";
 import Account from "../components/Account";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 
 const Header = () => {
-    const { account, library } = useWeb3React();
-    const triedToEagerConnect = useEagerConnect();
-    const isConnected = typeof account === "string" && !!library;
-
 
     return (
         <>
@@ -24,10 +18,10 @@ const Header = () => {
                             height={60}
                         />
                     </Link>
-                    <Typography variant="button" marginLeft={5} color="inherit" textTransform="none" href="/" component="a" noWrap sx={{ flexGrow: 1 }} >
+                    <Typography variant="subtitle1" color="inherit" textTransform="none" href="/" component="a" noWrap sx={{ flexGrow: 1 }} >
                         YeeldBox
                     </Typography>
-                    <Account triedToEagerConnect={triedToEagerConnect} />
+                    <Account />
                 </Toolbar>
             </AppBar>
         </>

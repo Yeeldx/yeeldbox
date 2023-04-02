@@ -11,11 +11,7 @@ import WalletIcon from '../assets/images/WalletIcon.png';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import React from "react";
 
-type AccountProps = {
-  triedToEagerConnect: boolean;
-};
-
-const Account = ({ triedToEagerConnect }: AccountProps) => {
+const Account = () => {
   const { active, error, activate, chainId, account, setError } =
     useWeb3React();
 
@@ -70,11 +66,6 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
   if (error) {
     return null;
   }
-
-  if (!triedToEagerConnect) {
-    return null;
-  }
-
   return (
     <>
       <Box
