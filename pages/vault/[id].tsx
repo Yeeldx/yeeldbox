@@ -35,12 +35,16 @@ const Vault = () => {
 
     useEffect(() => {
         setLoading(true)
-        if(_vault.address === vid){
-            setVault(_vault)
-            setLoading(false)
-        }
+        fetch('/api/vault/' + vid)
+            .then((res) => res.json())
+            .then((response) => {
+                console.log("vault: ", response.data)
+                setVault(response.data)
+                setLoading(false)
+            })
+
     }, [vid])
-    
+
     const toggleTxType = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };

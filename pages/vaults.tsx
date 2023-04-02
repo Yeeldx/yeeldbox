@@ -31,14 +31,13 @@ const Vaults = () => {
 
     useEffect(() => {
         setLoading(true)
-        setVaults(_vaults)
-        setLoading(false)
-        /* fetch('/api/vaults')
+        fetch('/api/vaults')
             .then((res) => res.json())
-            .then((data) => {
-                setVaults(data)
+            .then((vaults) => {
+                console.log("vaults: ", vaults)
+                setVaults(vaults)
                 setLoading(false)
-            }) */
+            })
     }, [])
 
 
