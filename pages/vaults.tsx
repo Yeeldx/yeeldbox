@@ -3,40 +3,43 @@ import { Box, Button, Card, Grid, Link, Paper, Table, TableBody, TableCell, Tabl
 import { useEffect, useState } from "react";
 import StatsCard from "../components/StatsCard";
 
-
+const _vaults = [
+    {
+        icon: "https://raw.githubusercontent.com/yearn/yearn-assets/master/icons/multichain-tokens/42161/0x239e14A19DFF93a17339DCC444f74406C17f8E67/logo-128.png",
+        display_name: "Curve Tricrypto Vault",
+        address: "0xdeD8B4ac5a4a1D70D633a87A22d9a7A8851bEa1b",
+        apy: { net_apy: "58%" },
+        details: { availableDepositLimit: 0 },
+        tvl: { tvl_deposited: 0, price: 0 },
+        status: 1
+    },
+    {
+        icon: "",
+        display_name: "MAGIC-ETH LP vault",
+        address: "",
+        apy: { net_apy: "0.00%" },
+        details: { availableDepositLimit: 0 },
+        tvl: { tvl_deposited: 0, price: 0 },
+        status: 0
+    },
+]
 
 const Vaults = () => {
-    const [vaults, setVaults] = useState([
-        {
-            icon: "https://raw.githubusercontent.com/yearn/yearn-assets/master/icons/multichain-tokens/42161/0x239e14A19DFF93a17339DCC444f74406C17f8E67/logo-128.png",
-            display_name: "Curve Tricrypto Vault",
-            address: "",
-            apy: { net_apy: "58%" },
-            details: { availableDepositLimit: 0 },
-            tvl: { tvl_deposited: 0, price: 0 },
-            status: 1
-        },
-        {
-            icon: "",
-            display_name: "MAGIC-ETH LP vault",
-            address: "",
-            apy: { net_apy: "0.00%" },
-            details: { availableDepositLimit: 0 },
-            tvl: { tvl_deposited: 0, price: 0 },
-            status: 0
-        },
-    ]);
+    const [vaults, setVaults] = useState([]);
     const [isLoading, setLoading] = useState(false)
 
-    /* useEffect(() => {
+
+    useEffect(() => {
         setLoading(true)
-        fetch('/api/vaults')
+        setVaults(_vaults)
+        setLoading(false)
+        /* fetch('/api/vaults')
             .then((res) => res.json())
             .then((data) => {
                 setVaults(data)
                 setLoading(false)
-            })
-    }, []) */
+            }) */
+    }, [])
 
 
     if (isLoading) return <p>Loading...</p>
@@ -59,11 +62,11 @@ const Vaults = () => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="left" style={{fontWeight: "bolder"}}>Token</TableCell>
-                                <TableCell align="left" style={{fontWeight: "bolder"}}>APY</TableCell>
-                                <TableCell align="left" style={{fontWeight: "bolder"}}>Available</TableCell>
-                                <TableCell align="center" style={{fontWeight: "bolder"}}>Deposited</TableCell>
-                                <TableCell align="center" style={{fontWeight: "bolder"}}>TVL</TableCell>
+                                <TableCell align="left" style={{ fontWeight: "bolder" }}>Token</TableCell>
+                                <TableCell align="left" style={{ fontWeight: "bolder" }}>APY</TableCell>
+                                <TableCell align="left" style={{ fontWeight: "bolder" }}>Available</TableCell>
+                                <TableCell align="center" style={{ fontWeight: "bolder" }}>Deposited</TableCell>
+                                <TableCell align="center" style={{ fontWeight: "bolder" }}>TVL</TableCell>
                                 <TableCell align="center"></TableCell>
                             </TableRow>
                         </TableHead>
