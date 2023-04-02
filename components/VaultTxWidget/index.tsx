@@ -4,15 +4,19 @@ import EastIcon from '@mui/icons-material/East';
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import useTokenContract from "../../hooks/useTokenContract";
+import useVaultContract from "../../hooks/useVaultContract";
+import { useRouter } from "next/router";
 
 
 const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, transactionType: any }) => {
     const { fromAddress, toAddress, vault, transactionType } = props;
+    const router = useRouter();
     const { account, library } = useWeb3React();
     const [amount, setAmount] = useState(0);
     const [loading, setLoading] = useState(false);
     const [isApprovalNeeded, setIsApprovalNeeded] = useState(false);
     const tokenContract = useTokenContract(vault.token.address);
+    const vaultContract = useVaultContract(vault.address);
 
     const handleAmountChange = async (event) => {
         setLoading(true);
@@ -32,6 +36,44 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, tr
             }
             setLoading(false);
         }
+
+    }
+
+    const handleButtonClick = async () => {
+
+        setLoading(true);
+        console.log("handleButtonClick: ");
+        if (transactionType === "deposit") {
+            if (isApprovalNeeded) {
+                /** Approval Transaction */
+                const approveTx = await tokenContract.approve(
+                    vault.address,
+                    ethers.utils.parseUnits(amount.toString()),
+                    {
+                        gasLimit: 1000000,
+                    }
+                );
+                setIsApprovalNeeded(false);
+            } else {
+                /** Deposit Transaction */
+                vaultContract
+                    .deposit(ethers.utils.parseUnits(amount.toString()), {
+                        gasLimit: 1000000,
+                    })
+                    .then(async (tx: any) => {
+                        setLoading(false);
+
+                        await tx.wait(1);
+                        router.reload();
+                    })
+                    .catch((error: any) => {
+                        console.log(error);
+                    });
+            }
+        } else {
+
+        }
+        setLoading(false);
 
     }
 
@@ -83,6 +125,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, tr
                             <Button
                                 variant="contained"
                                 color={isApprovalNeeded ? "warning" : "info"}
+                                onClick={handleButtonClick}
                                 style={{ minWidth: 115 }}>
                                 {isApprovalNeeded ? "APPROVE" : transactionType}
                             </Button>
