@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button, Card, Chip, Container, Popover, Typography } from "@mui/material";
 import { useWeb3React } from "@web3-react/core";
 import { UserRejectedRequestError } from "@web3-react/injected-connector";
 import { useEffect, useState } from "react";
@@ -8,6 +8,8 @@ import useMetaMaskOnboarding from "../hooks/useMetaMaskOnboarding";
 import { formatEtherscanLink, shortenHex } from "../util";
 import { addArbToMetamask, connectedNetwork, isSupportedNetwork, shortenAddress } from "../utils";
 import WalletIcon from '../assets/images/WalletIcon.png';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import React from "react";
 
 type AccountProps = {
   triedToEagerConnect: boolean;
@@ -26,6 +28,10 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
 
   // manage connecting state for injected connector
   const [connecting, setConnecting] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+
+
+
   useEffect(() => {
     if (active || error) {
       setConnecting(false);
@@ -39,6 +45,28 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
 
   }
 
+  const switchToArbitrum = () => {
+    console.log("addArbToMetamask")
+    addArbToMetamask();
+  }
+  const getConnectBtnClassName = () => {
+    return (`connectButton ${isWeb3Available && !isSupportedNetwork(chainId)
+      ? 'bg-error'
+      : 'bg-primary'
+      }`)
+  }
+
+
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
   if (error) {
     return null;
   }
@@ -47,89 +75,58 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
     return null;
   }
 
-  /* if (typeof account !== "string") {
-    return (
-      <div>
-        {isWeb3Available ? (
-          <button
-            disabled={connecting}
-            onClick={() => {
-              setConnecting(true);
-
-              activate(injected, undefined, true).catch((error) => {
-                // ignore the error if it's a user rejected request
-                if (error instanceof UserRejectedRequestError) {
-                  setConnecting(false);
-                } else {
-                  setError(error);
-                }
-              });
-            }}
-          >
-            {isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
-          </button>
-        ) : (
-          <button onClick={startOnboarding}>Install Metamask</button>
-        )}
-      </div>
-    );
-  }
- */
   return (
-    <Box className='account'>
-      <Box className='networkName'>
-        <Box className='styledPollingDot' />
-        <p>{connectedNetwork(chainId)}</p>
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          p: 1,
+          m: 1,
+        }}>
+        <FiberManualRecordIcon color="success" fontSize="small" />
+        <Typography variant="caption" component="span">{connectedNetwork(chainId)}</Typography>
       </Box>
-      {account && (!isWeb3Available || isSupportedNetwork(chainId)) ? (
-        <Box
-          id='web3-status-connected'
-          className='accountDetails'
-          onClick={toggleWalletModal}
-        >
-          <p>{shortenAddress(account)}</p>
-          {/* <img src={WalletIcon} alt='Wallet' /> */}
-        </Box>
-      ) : (
-        <Box
-          className={`connectButton ${isWeb3Available && !isSupportedNetwork(chainId)
-            ? 'bg-error'
-            : 'bg-primary'
-            }`}
-          onClick={() => {
-            if (!isWeb3Available || isSupportedNetwork(chainId)) {
-              toggleWalletModal();
-            }
-          }}
-        >
-          {isWeb3Available && !isSupportedNetwork(chainId)
-            ? 'Wrong Network'
-            : 'Connect Wallet'}
-          {isWeb3Available && !isSupportedNetwork(chainId) && (
-            <Box className='wrongNetworkWrapper'>
-              <Box className='wrongNetworkContent'>
-                <small>{'Please switch your wallet to Arbitrum Network.'}</small>
-                <Box mt={2.5} onClick={addArbToMetamask}>
-                  {'Switch to Arbitrum'}
+      <Box>
+        {account && (!isWeb3Available || isSupportedNetwork(chainId)) ?
+          (
+            <Chip
+              label={shortenAddress(account)}
+              variant="outlined"
+              sx={{ color: "white" }}
+              onClick={toggleWalletModal} />)
+          : (
+            <Box
+              className={`connectButton ${isWeb3Available && !isSupportedNetwork(chainId)
+                ? 'bg-error'
+                : 'bg-primary'
+                }`}
+              onClick={() => {
+                if (!isWeb3Available || isSupportedNetwork(chainId)) {
+                  toggleWalletModal();
+                }
+              }}
+            >
+              {isWeb3Available && !isSupportedNetwork(chainId)
+                ? 'Wrong Network'
+                : 'Connect Wallet'}
+              {isWeb3Available && !isSupportedNetwork(chainId) && (
+                <Box className='wrongNetworkWrapper'>
+                  <Box className='wrongNetworkContent'>
+                    <small>Please switch your wallet to Polygon Mumbai Test Network.</small>
+                    <Box mt={2.5} onClick={addArbToMetamask}>
+                      Switch To Arbitrum
+                    </Box>
+                  </Box>
                 </Box>
-              </Box>
+              )}
             </Box>
-          )}
-        </Box>
-      )}
-    </Box>
+          )
+        }
+      </Box>
+    </>
   );
 };
 
 export default Account;
-
-
-/* {<a
-      {...{
-        href: formatEtherscanLink("Account", [chainId, account]),
-        target: "_blank",
-        rel: "noopener noreferrer",
-      }}
-    >
-      {ENSName || `${shortenHex(account, 4)}`}
-    </a>} */

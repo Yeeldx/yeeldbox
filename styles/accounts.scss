@@ -1,0 +1,46 @@
+.connectButton {
+  width: 152px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  &:hover .wrongNetworkContent {
+    display: block;
+  }
+}
+.wrongNetworkWrapper {
+  position: absolute;
+  top: 36px;
+  width: 272px;
+  right: 0;
+  padding-top: 18px;
+}
+.wrongNetworkContent {
+  background: black;
+  border-radius: 10px;
+  padding: 24px;
+  display: none;
+  & small {
+    color: gray;
+    font-size: 14px;
+    line-height: 1.57;
+  }
+  & div {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: solid 1px blue;
+    color: blue;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}

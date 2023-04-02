@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import getLibrary from "../getLibrary";
 import Footer from "../components/Footer";
 import "../styles/globals.css";
-import "../styles/accounts.css";
+import "../styles/accounts.scss";
 import "../styles/layout.css";
 
 
