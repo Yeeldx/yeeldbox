@@ -6,8 +6,8 @@ import { ethers } from "ethers";
 import useTokenContract from "../../hooks/useTokenContract";
 
 
-const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, transactionType: any; onButtonClick: any }) => {
-    const { fromAddress, toAddress, vault, transactionType, onButtonClick } = props;
+const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, transactionType: any }) => {
+    const { fromAddress, toAddress, vault, transactionType } = props;
     const { account, library } = useWeb3React();
     const [amount, setAmount] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, tr
         setAmount(event.target.value)
 
         if (transactionType === "deposit") {
-            
+
             const allowance = await tokenContract.allowance(account, vault.address);
             const inputtedAmount = ethers.utils.parseUnits(event.target.value);
 
@@ -82,8 +82,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, tr
                         <TableCell align="center">
                             <Button
                                 variant="contained"
-                                onClick={onButtonClick}
-                                color={isApprovalNeeded ? "warning": "info"}
+                                color={isApprovalNeeded ? "warning" : "info"}
                                 style={{ minWidth: 115 }}>
                                 {isApprovalNeeded ? "APPROVE" : transactionType}
                             </Button>
