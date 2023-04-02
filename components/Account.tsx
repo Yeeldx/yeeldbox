@@ -71,7 +71,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
         {account && (!isWeb3Available || isSupportedNetwork(chainId)) ?
           (
             <Chip
-              label={shortenAddress(account)}
+              label={account?shortenAddress(account):''}
               variant="outlined"
               sx={{ color: "white" }}
               onClick={toggleWalletModal} />)
