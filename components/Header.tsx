@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Account from "../components/Account";
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Container, Stack, Toolbar, Typography } from "@mui/material";
 import { useWeb3React } from "@web3-react/core";
 import useEagerConnect from "../hooks/useEagerConnect";
 
@@ -24,9 +24,14 @@ const Header = () => {
                             height={60}
                         />
                     </Link>
-                    <Typography variant="subtitle1" color="inherit" textTransform="none" href="/" component="a" noWrap sx={{ flexGrow: 1 }} >
-                        YeeldBox
-                    </Typography>
+                    <Stack direction="row" spacing={5} marginLeft={4} sx={{ flexGrow: 1}}>
+                        <Typography variant="subtitle1" color="inherit" textTransform="none" href="/" component="a" > 
+                            Home
+                        </Typography>
+                        <Typography variant="subtitle1" color="inherit" textTransform="none" href="/" component="a" > 
+                            YeeldBox
+                        </Typography>
+                    </Stack>
                     <Account triedToEagerConnect={triedToEagerConnect}/>
                 </Toolbar>
             </AppBar>
@@ -36,3 +41,4 @@ const Header = () => {
 }
 
 export default Header;
+
