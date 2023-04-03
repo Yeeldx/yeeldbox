@@ -31,6 +31,9 @@ const Header = () => {
                         <Typography variant="subtitle1" color="inherit" textTransform="none" href="/yeeldbox" component="a" > 
                             YeeldBox
                         </Typography>
+                        <Typography variant="subtitle1" color="inherit" textTransform="none" href="/docs" component="a" > 
+                            Docs
+                        </Typography>
                     </Stack>
                     <Account triedToEagerConnect={triedToEagerConnect}/>
                 </Toolbar>
