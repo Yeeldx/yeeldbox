@@ -15,6 +15,9 @@
 # production
 /build
 
+# static folder for DigitalOcean App Platform
+_static
+
 # misc
 .DS_Store
 
