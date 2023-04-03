@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import Vaults from "./yeeldbox";
-import YeeldxLogo from "../assets/images/yeeldxLogo.svg"
+import YeeldxLogo from "../assets/images/YeeldIcon.png"
 const myLoader = ({ src, width, quality }) => {
   return `https://avatars.githubusercontent.com/u/111516461?s=200&v=4`
 }

@@ -1,7 +1,7 @@
 
 import { Box, Button, Card, Grid, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import StatsCard from "../components/StatsCard";
+import StatsCard from "../../components/StatsCard";
 
 const Vaults = () => {
     const [vaults, setVaults] = useState([]);
