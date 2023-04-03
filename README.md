@@ -1,13 +1,8 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmirshko%2Fnext-web3-boilerplate)
+#YeeldBox Frontend
 
-This is a default [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), customized as the default boilerplate for new Web3 projects.
+Yeeldx is a decentralized, multichain yield optimizer that enables crypto holders to earn compound interest on their assets. Similarly, to Yearn, Yeeldx maximizes user rewards from various liquidity pools and yield farming opportunities in the DeFi ecosystem, while prioritizing safety and efficiency.
+The main product offered by Yeeldx Finance are Vaults, where users can stake their crypto tokens and automatically compound their rewards. Despite the name "Vault" suggesting otherwise, users can withdraw their funds at any time and remain 100% in control of their crypto.
 
-## Features
-
-- Separate packages from [ethers.js](https://docs.ethers.io/v5/) for improved tree-shaking, often only ethers Contracts
-- Hooks-first approach to fetching and caching data from Contracts and memoization for performance with [SWR](https://swr.vercel.app)
-- [web3-react](https://github.com/NoahZinsmeister/web3-react) for ease of connecting to Web3 providers with a solid API
-- Auto-generates types for the contract ABIs in the `/contracts` folder via [TypeChain](https://github.com/ethereum-ts/TypeChain)
 
 ### Auto Contract Type Generation
 
@@ -25,10 +20,6 @@ export default function useMyContract() {
 }
 ```
 
-## Previous Art
-
-- [NoahZinsmeister/hypertext](https://github.com/NoahZinsmeister/hypertext)
-
 ## Getting Started
 
 First, run the development server:
@@ -42,18 +33,3 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
