@@ -28,7 +28,7 @@ const Header = () => {
                         <Typography variant="subtitle1" color="inherit" textTransform="none" href="/" component="a" > 
                             Home
                         </Typography>
-                        <Typography variant="subtitle1" color="inherit" textTransform="none" href="/" component="a" > 
+                        <Typography variant="subtitle1" color="inherit" textTransform="none" href="/yeeldbox" component="a" > 
                             YeeldBox
                         </Typography>
                     </Stack>
