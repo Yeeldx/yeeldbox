@@ -1,64 +1,73 @@
 [
   {
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "name": "approve",
+    "constant": false,
     "inputs": [
       { "name": "spender", "type": "address" },
       { "name": "amount", "type": "uint256" }
     ],
+    "name": "approve",
     "outputs": [{ "name": "", "type": "bool" }],
-    "gas": 38241
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "name": "deposit",
+    "constant": false,
     "inputs": [{ "name": "_amount", "type": "uint256" }],
-    "outputs": [{ "name": "", "type": "uint256" }]
-  },
-  {
+    "name": "deposit",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "name": "withdraw",
+    "type": "function"
+  },
+  {
+    "constant": false,
     "inputs": [{ "name": "maxShares", "type": "uint256" }],
-    "outputs": [{ "name": "", "type": "uint256" }]
+    "name": "withdraw",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "stateMutability": "view",
-    "type": "function",
+    "constant": true,
+    "inputs": [],
     "name": "decimals",
-    "inputs": [],
     "outputs": [{ "name": "", "type": "uint256" }],
-    "gas": 3678
-  },
-  {
-    "stateMutability": "view",
-    "type": "function",
-    "name": "token",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "address" }],
-    "gas": 3798
-  },
-  {
-    "gas": 1576655,
-    "inputs": [{ "name": "arg0", "type": "address" }],
-    "name": "balanceOf",
-    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "stateMutability": "view",
-    "type": "function",
-    "name": "totalAssets",
+    "constant": true,
     "inputs": [],
+    "name": "token",
+    "outputs": [{ "name": "", "type": "address" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "arg0", "type": "address" }],
+    "name": "balanceOf",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalAssets",
     "outputs": [
       {
         "name": "",
         "type": "uint256"
       }
     ],
-    "gas": 1576655
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   }
 ]
