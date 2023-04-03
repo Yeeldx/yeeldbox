@@ -9,7 +9,7 @@
     "lint": "next lint",
     "compile-contract-types": "typechain --target ethers-v5 --out-dir './contracts/types' './contracts/*.json'",
     "postinstall": "yarn compile-contract-types",
-    "export": "yarn build && next export -o _static"
+    "export": "next build && next export -o _static"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
