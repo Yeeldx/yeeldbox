@@ -1,11 +1,11 @@
 html,
 body {
-  padding: 0;
+  padding: 20px 20px 60px;
   margin: 0;
-  background-color: steelblue;
+  background-color: #0f1535;
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+    'Arial', sans-serif;
 }
 
 a {
@@ -15,4 +15,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  background-color: #e9ecef;
 }

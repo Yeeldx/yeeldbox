@@ -91,7 +91,7 @@ const VaultTxWidget = (props: { fromAddress: any; toAddress: any; vault: any, tr
 
     }
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} elevation={0} sx={{backgroundColor: "transparent"}}>
             <Table sx={{ minWidth: 650 }}>
                 <TableHead>
                     <TableRow>

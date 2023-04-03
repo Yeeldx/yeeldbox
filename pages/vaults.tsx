@@ -22,7 +22,7 @@ const Vaults = () => {
     if (isLoading) return <p>Loading...</p>
     if (vaults.length === 0) return <p>No Vaults</p>
     return (
-        <div>
+        <>
             <Grid container spacing={2} padding={5}>
                 <Grid item xs={6} md={6} xl={6}>
                     <StatsCard title="DEPOSITED" amount="0.00" />
@@ -73,7 +73,7 @@ const Vaults = () => {
                     </Table>
                 </TableContainer>
             </Box>
-        </div>
+        </>
     );
 }
 
