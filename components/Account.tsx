@@ -76,14 +76,14 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
             disabled={connecting}
             label={isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
             variant="outlined"
-            sx={{ color: "white" }}
+            color="warning"
             onClick={connectMetaMask} />
         ) : (
           <Chip
             label="Install Metamask"
             variant="outlined"
             onClick={startOnboarding}
-            sx={{ color: "white" }} />
+            color="warning" />
         )}
       </div>
     );
@@ -123,7 +123,10 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
               }}
             >
               {isWeb3Available && !isSupportedNetwork(chainId)
-                ? 'Wrong Network'
+                ? <Chip
+                  label="Wrong Network"
+                  variant="outlined"
+                  color="error"/>
                 : 'Connect Wallet'}
               {isWeb3Available && !isSupportedNetwork(chainId) && (
                 <Box className='wrongNetworkWrapper'>
