@@ -46,12 +46,47 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
 
   }
 
+  const connectMetaMask = () => {
+    setConnecting(true);
+
+    activate(injected, undefined, true).catch((error) => {
+      // ignore the error if it's a user rejected request
+      if (error instanceof UserRejectedRequestError) {
+        setConnecting(false);
+      } else {
+        setError(error);
+      }
+    });
+  }
+
   if (error) {
     return null;
   }
 
   if (!triedToEagerConnect) {
     return null;
+  }
+
+  if (typeof account !== "string") {
+    return (
+      <div>
+
+        {isWeb3Available ? (
+          <Chip
+            disabled={connecting}
+            label={isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
+            variant="outlined"
+            sx={{ color: "white" }}
+            onClick={toggleWalletModal} />
+        ) : (
+          <Chip
+            label="Install Metamask"
+            variant="outlined"
+            onClick={startOnboarding}
+            sx={{ color: "white" }} />
+        )}
+      </div>
+    );
   }
 
   return (
@@ -71,7 +106,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
         {account && (!isWeb3Available || isSupportedNetwork(chainId)) ?
           (
             <Chip
-              label={account?shortenAddress(account):''}
+              label={account ? shortenAddress(account) : ''}
               variant="outlined"
               sx={{ color: "white" }}
               onClick={toggleWalletModal} />)

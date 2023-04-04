@@ -10,6 +10,8 @@ const Header = () => {
     const triedToEagerConnect = useEagerConnect();
     const isConnected = typeof account === "string" && !!library;
 
+    console.log("isConnected: ", isConnected);
+
     return (
         <>
             <AppBar
