@@ -77,7 +77,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
             label={isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
             variant="outlined"
             sx={{ color: "white" }}
-            onClick={toggleWalletModal} />
+            onClick={connectMetaMask} />
         ) : (
           <Chip
             label="Install Metamask"
