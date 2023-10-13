@@ -13,12 +13,11 @@ jobs:
       - run: yarn install
       - run: CI=false yarn build
       - name: ssh deploy on aws ec2
-        uses: appleboy/ssh-action@master
+        uses: easingthemes/ssh-deploy@v2.1.4
         with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd ~/yeeldbox/
-            yarn i serve
-            serve -p 3000 build/
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          REMOTE_PORT: 3000
+          SOURCE: "build/"
+          TARGET: "~/yeeldbox/"
