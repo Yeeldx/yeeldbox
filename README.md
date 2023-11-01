@@ -1,4 +1,4 @@
-#YeeldBox Frontend
+# YeeldBox Frontend
 
 Yeeldx is a decentralized, multichain yield optimizer that enables crypto holders to earn compound interest on their assets. Similarly, to Yearn, Yeeldx maximizes user rewards from various liquidity pools and yield farming opportunities in the DeFi ecosystem, while prioritizing safety and efficiency.
 The main product offered by Yeeldx Finance are Vaults, where users can stake their crypto tokens and automatically compound their rewards. Despite the name "Vault" suggesting otherwise, users can withdraw their funds at any time and remain 100% in control of their crypto.
